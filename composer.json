@@ -1,0 +1,26 @@
+{
+    "name": "edgewizz/blog",
+    "description": "This is blog functionality",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Edgewizz\\Blog\\": "packages/edgewizz/blog/src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Edgewizz\\Blog\\BlogServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "tarun.rock",
+            "email": "increadibletarun07@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
