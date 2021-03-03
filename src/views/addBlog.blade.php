@@ -1,4 +1,8 @@
-
+@extends('includes.main')
+@section('head_extra')
+<link rel="stylesheet" href="{{ asset('back/dist/css/yoast.css') }}">
+<link rel="stylesheet" href="{{ asset('back/assets/libs/select2/dist/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('back/assets/libs/cropper/dist/cropper.min.css') }}">
 <style>
     .invalid-feedback {
     width: 100%;
@@ -7,54 +11,94 @@
     color: #f93a3a;
     }
 </style>
-
-<form class="m-t-30" method="post">
-                            
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control {{-- {{ $errors->has('title') ? ' is-invalid' : '' }} --}}"
-            id="title" aria-describedby="emailHelp" placeholder="Enter Title" name="title"
-            value="{{ $stored->title ?? '' }}" required>
-        {{-- @if ($errors->has('title'))
-        <div class="invalid-feedback">{{ $errors->first('title') }}</div>
-        @endif --}}
-    </div>
-    <div class="form-group">
-        <label for="editor">Content</label>
-        <div id="editor">{!!  $stored->description ?? old('description') !!}</div>
-        <div id="counter"></div>
-        @if ($errors->has('description'))
-        <div class="invalid-feedback">{{ $errors->first('description') }}</div>
-        @endif
-    </div>
-    <div class="form-group">
-        <div class="col-3">
-            <img id="image" data-src="#" class="img img-thumbnail" src="{{ $stored->pic ?? "" }}"/>
-            <br/>
+@stop
+@section('content')
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+               
+                <h4 class="page-title">@if($stored) Edit Post @else Create Post @endif</h4>
+                
+                <div class="d-flex align-items-center"></div>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex no-block justify-content-end align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Create Post</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
-        <label for="imgInp">Featured Image
-        <input type="file" id="imgInp" accept="image/*" name=""
-            class="hidden-field">
-        </label>
-        <div class="invalid-feedback image-error">Featured Image is required</div>
     </div>
-    <hr>
-    <h3>SEO</h3>
-    <div class="form-group">
-        <div id="snippet" class="output"></div>
-        <label for="focusKeyword">Focus Keyword</label>
-        <input id="focusKeyword" placeholder="Enter Your main keyword" name="focus"
-        value="{{ $stored->meta_keyword ?? "" }}">
-        <div id="output" class="output"></div>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"> Post</h4>
+                                <form class="m-t-30" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" class="form-control {{-- {{ $errors->has('title') ? ' is-invalid' : '' }} --}}"
+                                            id="title" aria-describedby="emailHelp" placeholder="Enter Title" name="title"
+                                            value="{{ $stored->title ?? '' }}" required>
+                                        {{-- @if ($errors->has('title'))
+                                        <div class="invalid-feedback">{{ $errors->first('title') }}</div>
+                                        @endif --}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editor">Content</label>
+                                        <div id="editor">{!!  $stored->description ?? old('description') !!}</div>
+                                        <div id="counter"></div>
+                                        @if ($errors->has('description'))
+                                        <div class="invalid-feedback">{{ $errors->first('description') }}</div>
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-3">
+                                            <img id="image" data-src="#" class="img img-thumbnail" src="{{ $stored->pic ?? "" }}"/>
+                                            <br/>
+                                        </div>
+                                        <label for="imgInp">Featured Image
+                                        <input type="file" id="imgInp" accept="image/*" name=""
+                                            class="hidden-field">
+                                        </label>
+                                        <div class="invalid-feedback image-error">Featured Image is required</div>
+                                    </div>
+                                    <hr>
+                                    <h3>SEO</h3>
+                                    <div class="form-group">
+                                        <div id="snippet" class="output"></div>
+                                        <label for="focusKeyword">Focus Keyword</label>
+                                        <input id="focusKeyword" placeholder="Enter Your main keyword" name="focus"
+                                        value="{{ $stored->meta_keyword ?? "" }}">
+                                        <div id="output" class="output"></div>
+                                    </div>
+                                    
+                                    <button type="button" class="btn btn-warning save"  data-status="0">draft</button>
+                                    
+                                    <button type="button" class="btn btn-primary save" data-status="3">Upload </button>
+                                
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <button type="button" class="btn btn-warning save"  data-status="0">draft</button>
-    
-    <button type="button" class="btn btn-primary save" data-status="3">Upload </button>
-
-</form>
-
-
+</div>
+@stop
+@section("script_extra")
 <script src="{{ asset('back/dist/js/editor.js') }}"></script>
 <script src="{{ asset('back/assets/libs/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('back/assets/libs/cropper/dist/cropper.min.js') }}"></script>
@@ -694,3 +738,4 @@
     
     });
 </script>
+@endsection
