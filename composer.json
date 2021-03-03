@@ -11,7 +11,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Edgewizz\\Blog\\BlogServiceProvider"
+                "blog\\src\\BlogServiceProvider"
             ]
         }
     },
