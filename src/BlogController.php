@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
-use App\Media\MediaLink;
+use App\Models\MediaLink;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
 use App\User;
