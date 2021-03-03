@@ -9,6 +9,3 @@
 
 	Route::any("view-blog","Edgewizz\Blog\BlogController@publishedPosts")->name('published-blog');
 	Route::any("draft-blog","Edgewizz\Blog\BlogController@draftPosts")->name('draft-blog');
-
-	Route::get('hello', function(){ 
-	dd('hi'); });

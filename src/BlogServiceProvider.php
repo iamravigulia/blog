@@ -3,7 +3,7 @@
 namespace Edgewizz\Blog;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Blade;
+// use Illuminate\Support\Facades\Blade;
 
 
 class BlogServiceProvider extends ServiceProvider
@@ -19,7 +19,7 @@ class BlogServiceProvider extends ServiceProvider
         $this->app->make('Edgewizz\Blog\BlogController');
         // $this->app->make('Edgewizz\Blog\CalculatorController');
         
-        $this->loadViewsFrom(__DIR__.'/views', 'blog');
+        $this->loadViewsFrom(__DIR__.'/views', 'blogView');
     }
 
     /**
@@ -30,14 +30,13 @@ class BlogServiceProvider extends ServiceProvider
     public function boot()
     {
 
-// dd($this);
         $this->loadRoutesFrom(__DIR__.'/routes.php');
         $this->loadMigrationsFrom(__DIR__.'/migrations');
-        $this->loadViewsFrom(__DIR__ . '/components', 'blog');
+        // $this->loadViewsFrom(__DIR__ . '/components', 'blogView');
 
-        Blade::component('blog::blog.index', 'blog.index');
-        /*Blade::component('blog::blog.index', 'blog.index');
-        Blade::component('blog::blog.edit', 'blog.edit');*/
+        /*Blade::component('blogView::blogView.addBlog', 'blogView.addBlog');
+        Blade::component('blogView::blogView.draft', 'blogView.draft');
+        Blade::component('blogView::blogView.published', 'blogView.published');*/
         
 
     }

@@ -19,9 +19,6 @@ use Imagick as imgick;
 
 class BlogController extends Controller
 {
-	public function test(){
-		dd("Hello");
-	}
    
     public function publishedPosts(Request $request)
     {
@@ -56,7 +53,7 @@ class BlogController extends Controller
             return $data;
         }
 
-        return view("blog::publishedPosts");
+        return view("blogView::published");
 
     }
 
@@ -94,7 +91,7 @@ class BlogController extends Controller
 
         }
 
-        return view("blogs::draftPosts");
+        return view("blogView::draft");
     }
 
 
@@ -119,7 +116,7 @@ class BlogController extends Controller
             
         }
 
-        return view('blog::addBlog')->with([
+        return view('blogView::addBlog')->with([
 
             'stored' => $stored ?? [] ,
             'id' => $id ?? 0
